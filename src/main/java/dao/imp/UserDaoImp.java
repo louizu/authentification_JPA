@@ -2,6 +2,7 @@ package dao.imp;
 import dao.UserDao;
 
 import Entity.User;
+import jakarta.annotation.PreDestroy;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.*;
 import java.sql.SQLException;
@@ -38,16 +39,21 @@ public class UserDaoImp implements UserDao {
         }catch (Exception e){
             e.printStackTrace();
             return false;
-        }finally {
-            if (em != null && em.isOpen()) {
-                em.close();
-            }
         }
+
 //        System.out.println("*******************************"+login);
 //        System.out.println(mdp);
 //        return true;
   }
-
+    @PreDestroy
+    public void cleanUp() {
+        if (em != null && em.isOpen()) {
+            em.close();
+        }
+        if (emfactory != null && emfactory.isOpen()) {
+            emfactory.close();
+        }
+    }
 
 }
 
