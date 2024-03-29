@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <!--    <f:loadBundle var="labels" basename="i18n.labels"/>-->
+    <h:head>
+        <h:outputStylesheet library="webjars" name="bootstrap/5.3.3/css/bootstrap.css"/>
+<!--        <h:outputStylesheet library="css" name="myStyle.css"/>-->
+    </h:head>
+    <h:body>
+<h1>page authentification :</h1>
+        <h3 Class="success-color" >#{userbean.msg_success}</h3>
+        <h3 Class="error-color" >#{userbean.msg_error}</h3>
+
+<h:form>
+    <div class="mb-3">
+        <label for="login" class="form-label">Login</label>
+        <h:inputText type="text" class="form-control" id="login" name="login" value="#{userbean.user.login}" />
+    </div>
+    <div class="mb-3">
+        <label for="mdp" class="form-label">Password</label>
+        <h:inputSecret class="form-control" id="mdp" name="mdp" value="#{userbean.user.password}"/>
+    </div>
+    <h:commandButton type="submit" value=" se connecter " styleClass="btn btn-primary"
+                     action="#{userbean.sauthentifier(userbean.user.login,userbean.user.password)}"/>
+</h:form>
+
+
+    </h:body>
+</f:view>
+</html>
